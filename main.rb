@@ -12,4 +12,5 @@ raise "File #{file} not found" unless File.exist?(file)
 game_plays = File.read(file).split("\n")
 players = Loader.extract_players(game_plays)
 
-Game.new(players, Loader.extract_points_for_players(game_plays, players))
+game = Game.new(players, Loader.extract_points_for_players(game_plays, players))
+game.summary
