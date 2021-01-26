@@ -2,8 +2,8 @@
 class Summary
   def initialize() end
 
-  def self.display_header
-    puts %w[Frame 1 2 3 4 5 6 7 8 9 10].join("\t\t")
+  def self.display_header(total)
+    ['Frame', (1..total).map { |i| i }].join("\t\t")
   end
 
   def self.display_score(score_data)
@@ -26,5 +26,14 @@ class Summary
         pinfall
       end
     end.join("\t")
+  end
+
+  def self.display(players)
+    puts display_header(players.first.turns.size)
+    players.each do |player|
+      puts player.name
+      puts ['Pinfalls', display_pinfalls(player.turns)].join("\t")
+      puts ["Score\t", display_score(player.round_scores)].join("\t")
+    end
   end
 end

@@ -8,12 +8,11 @@ class Loader
   end
 
   def self.extract_points_for_players(plays, players = [])
-    players_points = players.map do |player|
-      plays
-        .select { |play| play.include? player }
-        .map { |play| play.split.last }
-    end
-
-    players_points
+    players
+      .map do |player|
+        plays
+          .select { |play| play.include? player }
+          .map { |play| play.split.last }
+      end
   end
 end

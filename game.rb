@@ -1,3 +1,4 @@
+require './ten_pin_rules'
 require './player'
 require './summary'
 
@@ -15,17 +16,12 @@ class Game
   def create_players
     @players
       .to_enum(:each_with_index)
-      .map { |player, i| Player.new(player, @scores[i]) }
+      .map { |player, i| Player.new(player, TenPinRules, @scores[i]) }
   end
 
   def summary
     return 'Sorry, invalid data passed, please validate your file' unless valid_data?
 
-    Summary.display_header
-    create_players.each do |player|
-      puts player.name
-      puts ['Pinfall', Summary.display_pinfalls(player.turns)].join("\t")
-      puts ['Score', Summary.display_score(player.round_scores)].join("\t")
-    end
+    Summary.display(create_players)
   end
 end
