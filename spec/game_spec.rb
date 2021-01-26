@@ -27,8 +27,3 @@ RSpec.describe Game do
     expect(game.valid_data?).to eq false
   end
 end
-
-#   def test_should_not_work_with_incorrect_info
-
-#     assert !game.valid_data?, "Passed info didn't get validated correctly"
-#   end

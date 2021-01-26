@@ -7,13 +7,24 @@ class Summary
   end
 
   def self.display_score(score_data)
-    puts "Displaying score: #{score_data}"
+    score_data.join("\t\t")
+  end
 
-    puts 'throws:'
-    turns.map.with_index do |turn, i|
-      puts "#{i}: #{turn.inspect}"
-      # puts "will show: #{[first_throw, second_throw, third_throw].join("\t").inspect}"
-      turn
-    end
+  def self.display_pinfalls(pinfalls)
+    pinfalls.map do |pinfall|
+      if pinfall.size == 1
+        ["\s", 'X']
+      elsif pinfall.map(&:to_i).sum == 10
+        [pinfall[0], '/']
+      elsif pinfall.size == 3
+        pinfall[2] = '/' if pinfall[0] == '10' && pinfall.map(&:to_i).reject { |i| i == 10 }.sum >= 10
+        pinfall[1] = '/' if pinfall[0] != '10' && pinfall.map(&:to_i).reject { |a| a == 10 }.sum >= 10
+
+        pinfall
+          .map { |value| value.to_i == 10 ? 'X' : value }
+      else
+        pinfall
+      end
+    end.join("\t")
   end
 end

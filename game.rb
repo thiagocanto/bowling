@@ -24,8 +24,8 @@ class Game
     Summary.display_header
     create_players.each do |player|
       puts player.name
-      puts "Pinfalls\t" << player.show_turns.join("\t")
-      puts "Score\t\t#{player.partial_scores.join("\t")}"
+      puts ['Pinfall', Summary.display_pinfalls(player.turns)].join("\t")
+      puts ['Score', Summary.display_score(player.round_scores)].join("\t")
     end
   end
 end
