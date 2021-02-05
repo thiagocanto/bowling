@@ -1,7 +1,5 @@
 # Class responsible for displaying game info
 class Summary
-  def initialize() end
-
   def self.display_header(total)
     ['Frame', (1..total).map { |i| i }].join("\t\t")
   end
@@ -28,12 +26,12 @@ class Summary
     end.join("\t")
   end
 
-  def self.display(players)
-    puts display_header(players.first.turns.size)
+  def self.display(players, rules)
+    puts display_header(players.first.turns(rules).size)
     players.each do |player|
       puts player.name
-      puts ['Pinfalls', display_pinfalls(player.turns)].join("\t")
-      puts ["Score\t", display_score(player.round_scores)].join("\t")
+      puts ['Pinfalls', display_pinfalls(player.turns(rules))].join("\t")
+      puts ["Score\t", display_score(player.scores(rules))].join("\t")
     end
   end
 end

@@ -4,9 +4,12 @@ class TenPinRules
   @pins = 10
   @balls = 2
 
-  def self.valid_chances?(chances)
-    chances
-      .none? { |chance| chance.to_i.negative? || chance.to_i > @pins }
+  def self.valid_chances?(players)
+    players.all? do |player|
+      player
+        .chances
+        .none? { |chance| chance.to_i.negative? || chance.to_i > @pins }
+    end
   end
 
   def self.next_round?(ball:, dropped_pins:, round:)

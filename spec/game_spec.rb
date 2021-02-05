@@ -1,4 +1,4 @@
-require_relative '../game'
+require_relative '../src/game'
 
 # Test for Game class
 RSpec.describe Game do

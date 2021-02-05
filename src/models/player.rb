@@ -2,22 +2,19 @@
 class Player
   attr_reader :name, :chances
 
-  def initialize(name, rules, chances = [])
+  def initialize(name, chances = [])
     @name = name
-    @rules = rules
     @chances = chances
   end
 
-  def turns
-    @rules.organize_turns(@chances)
+  def turns(rules)
+    rules.organize_turns(@chances)
   end
 
-  def partial_scores
-    @rules.calculate_scores(@chances)
-  end
-
-  def round_scores
+  def scores(rules)
     scores = []
+    partial_scores = rules.calculate_scores(@chances)
+
     (0..partial_scores.size - 1).each do |i|
       scores << partial_scores[0..i].reduce(:+)
     end
