@@ -1,4 +1,4 @@
-require_relative '../loader'
+require_relative '../src/helpers/loader'
 
 # Test for Game class
 RSpec.describe Loader do

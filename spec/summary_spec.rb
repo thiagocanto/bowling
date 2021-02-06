@@ -1,5 +1,5 @@
-require_relative '../ten_pin_rules'
-require_relative '../summary'
+require_relative '../src/rules/ten_pin_rules'
+require_relative '../src/views/summary'
 
 # Test for Game class
 RSpec.describe Summary do

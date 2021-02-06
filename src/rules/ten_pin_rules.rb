@@ -6,9 +6,10 @@ class TenPinRules
 
   def self.valid_chances?(players)
     players.all? do |player|
-      player
-        .chances
-        .none? { |chance| chance.to_i.negative? || chance.to_i > @pins }
+      !player.chances.nil? &&
+        player
+          .chances
+          .none? { |chance| chance.to_i.negative? || chance.to_i > @pins }
     end
   end
 

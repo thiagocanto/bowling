@@ -11,9 +11,13 @@ class Player
     rules.organize_turns(@chances)
   end
 
+  def partial_scores(rules)
+    rules.calculate_scores(@chances)
+  end
+
   def scores(rules)
     scores = []
-    partial_scores = rules.calculate_scores(@chances)
+    partial_scores = partial_scores(rules)
 
     (0..partial_scores.size - 1).each do |i|
       scores << partial_scores[0..i].reduce(:+)
@@ -22,7 +26,7 @@ class Player
     scores
   end
 
-  def final_score
-    partial_scores.reduce(:+)
+  def final_score(rules)
+    partial_scores(rules).reduce(:+)
   end
 end

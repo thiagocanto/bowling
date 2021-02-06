@@ -1,4 +1,5 @@
-require_relative '../ten_pin_rules'
+require_relative './test_helpers'
+require_relative '../src/rules/ten_pin_rules'
 
 RSpec.describe TenPinRules do
   context 'having correct values' do
@@ -20,11 +21,13 @@ RSpec.describe TenPinRules do
 
   context 'having invalid scores' do
     it "shouldn't run with negative values" do
-      expect(TenPinRules.valid_chances?(%w[-8 5])).to eq false
+      players = generate_players(%w[John], [%w[-8 5]])
+      expect(TenPinRules.valid_chances?(players)).to eq false
     end
 
     it "shouldn't run with values greater than 10" do
-      expect(TenPinRules.valid_chances?(%w[15 7 3 6 8])).to eq false
+      players = generate_players(%w[John], [%w[15 7 3 6 8]])
+      expect(TenPinRules.valid_chances?(players)).to eq false
     end
   end
 
