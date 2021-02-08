@@ -14,17 +14,11 @@ RSpec.describe Game do
 
   game = Game.new(players, TenPinRules)
 
-  it 'should validate amount of players and chances received' do
+  it 'should validate valid player chances' do
     expect(game.valid_data?).to eq true
   end
 
-  it "shouldn't work with non-matching players and chances" do
-    players = generate_players(%w[John Fred],
-      [
-        %w[10 10 10 10 10 10 10 10 10 10 10]
-      ])
-    game = Game.new(players, TenPinRules)
-
-    expect(game.valid_data?).to eq false
+  it 'should print scores' do
+    expect(game.start).to include players[0]
   end
 end

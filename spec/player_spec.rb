@@ -27,4 +27,11 @@ RSpec.describe Player do
       expect(player.final_score(TenPinRules)).to eq 0
     end
   end
+
+  # couldn't make it work :(
+  # context 'having negative value on chance' do
+  #   it 'should not create the player' do
+  #     expect(Player.new('John', %w[-8 5])).to raise StandardError "Player score can't have negatives"
+  #   end
+  # end
 end

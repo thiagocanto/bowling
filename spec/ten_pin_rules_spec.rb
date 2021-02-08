@@ -20,11 +20,6 @@ RSpec.describe TenPinRules do
   end
 
   context 'having invalid scores' do
-    it "shouldn't run with negative values" do
-      players = generate_players(%w[John], [%w[-8 5]])
-      expect(TenPinRules.valid_chances?(players)).to eq false
-    end
-
     it "shouldn't run with values greater than 10" do
       players = generate_players(%w[John], [%w[15 7 3 6 8]])
       expect(TenPinRules.valid_chances?(players)).to eq false

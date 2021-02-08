@@ -5,6 +5,13 @@ class Player
   def initialize(name, chances = [])
     @name = name
     @chances = chances
+
+    validate
+  end
+
+  def validate
+    raise StandardError, 'Player has no chances registered' if @chances.nil?
+    raise StandardError, "Player score can't have negatives" if @chances.any? { |chance| chance.to_i.negative? }
   end
 
   def turns(rules)

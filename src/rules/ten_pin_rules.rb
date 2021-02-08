@@ -9,7 +9,7 @@ class TenPinRules
       !player.chances.nil? &&
         player
           .chances
-          .none? { |chance| chance.to_i.negative? || chance.to_i > @pins }
+          .none? { |chance| chance.to_i > @pins }
     end
   end
 
